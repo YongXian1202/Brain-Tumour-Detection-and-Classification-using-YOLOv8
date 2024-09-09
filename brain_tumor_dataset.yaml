@@ -1,0 +1,7 @@
+# brain_tumor_dataset.yaml
+path: C:/Users/yongx/Desktop/Yong Xian/Bachelor of Information Systems (Data Analytics)/BSDA Semester 9/Capstone Project 2/BTDAC_Project/Dataset Repository/Brain Tumor labeled dataset  # Root directory of your dataset
+train: C:/Users/yongx/Desktop/Yong Xian/Bachelor of Information Systems (Data Analytics)/BSDA Semester 9/Capstone Project 2/BTDAC_Project/Dataset Repository/Brain Tumor labeled dataset/train  # Adjust to your train images path
+val: C:/Users/yongx/Desktop/Yong Xian/Bachelor of Information Systems (Data Analytics)/BSDA Semester 9/Capstone Project 2/BTDAC_Project/Dataset Repository/Brain Tumor labeled dataset/test  # Adjust to your validation images path
+
+nc: 4  # Number of classes (glioma, meningioma, pituitary, notumor)
+names: ['pituitary', 'meningioma', 'glioma', 'notumor']  # Class names
