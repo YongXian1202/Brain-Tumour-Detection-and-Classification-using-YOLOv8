@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTDAC</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .upload-container {
+            text-align: center;
+            background: #2c2c3c;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px dashed #4CAF50;
+            width: 400px;
+            position: relative;
+        }
+        .upload-container:hover {
+            background: #34343f;
+        }
+        .file-input {
+            display: none;
+        }
+        .drag-drop-text {
+            margin-top: 10px;
+        }
+        .upload-container p {
+            margin: 10px 0;
+        }
+        .image-preview {
+            margin-top: 20px;
+            max-width: 100%;
+            max-height: 200px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        .upload-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .upload-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Brain Tumor Detection and Classification (BTDAC)</h2>
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        <div class="upload-container" id="drop-area">
+            <p>Drag & Drop or Click to Upload</p>
+            <input type="file" class="file-input" id="fileInput" name="file" accept="image/*" required>
+            <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">Choose File</button>
+        </div>
+        <img id="imagePreview" class="image-preview" alt="Image Preview">
+        <br>
+        <input type="submit" value="Upload File" class="upload-button" style="margin-top: 10px;">
+    </form>
+
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+
+        dropArea.addEventListener('click', () => fileInput.click());
+
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.style.background = '#34343f';
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.style.background = '#2c2c3c';
+        });
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            fileInput.files = event.dataTransfer.files;
+            displayPreview(fileInput.files[0]);
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            displayPreview(event.target.files[0]);
+        });
+
+        function displayPreview(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
